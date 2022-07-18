@@ -44,21 +44,20 @@ const onEnter = async () => {
     console.dir(e);
   }
 };
+
+const vAutofocus = {
+  mounted: (element) => {
+    element.focus();
+  }
+}
 </script>
 
 <template>
-  <div
-    class="wrapper max-w-xl mx-auto bg-cover bg-bottom"
-    :class="defineWeatherByEachCountry"
-  >
+  <div class="wrapper max-w-xl mx-auto bg-cover bg-bottom" :class="defineWeatherByEachCountry">
     <div class="main min-h-screen p-6">
-      <input
-        type="text"
+      <input type="text"
         class="search-bar p-3 rounded-[4px] text-lg w-full outline-none opacity-80 focus-within:opacity-100"
-        placeholder="Type a country"
-        v-model="weatherStore.query"
-        @keypress.enter.prevent="onEnter"
-      />
+        placeholder="Type a country" v-model="weatherStore.query" @keypress.enter.prevent="onEnter" v-autofocus />
 
       <div v-if="weatherStore.loading" class="loader mt-5"></div>
       <div v-if="weatherStore.isNotActive" class="mt-5">
@@ -67,10 +66,7 @@ const onEnter = async () => {
         </h1>
       </div>
       <h1 class="text-[20px] text-white mt-5">{{ notFound }}</h1>
-      <div
-        class="weather-wrap mt-5"
-        v-if="typeof weatherStore.weather.main != 'undefined'"
-      >
+      <div class="weather-wrap mt-5" v-if="typeof weatherStore.weather.main != 'undefined'">
         <div class="location-box">
           <div class="location">
             {{ weatherStore.weather.name }}, {{ weatherStore.weather.sys.country }}
