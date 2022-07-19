@@ -36,6 +36,10 @@ body {
   text-align: center;
 }
 
+.bg-sky {
+  background-image: url('./clear.jpg');
+}
+
 .weather-box {
   text-align: center;
 }
